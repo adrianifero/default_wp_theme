@@ -34,21 +34,6 @@ section#top.page { height:160px; }
 <?php endwhile; ?>
 <?php endif; ?>
 
-
-
-<section id="subscribe" class="white" >
-	<div class="content" >
-       <h1 style="font-size: 48px;margin: 0px;">Subscribe</h1>
-       <p>Name</p>
-       <input type="text" placeholder="Enter your name" />
-       <p>E-mail</p>
-       <input type="text" placeholder="Enter your e-mail" />
-       <p>Interest</p>
-       <input type="text" placeholder="What's your culinary interest" />
-       
-    </div>
-</section>
-
 <section id="social" class="white" >
 	<div class="content" >
 		<img src="http://www.iconsdb.com/icons/preview/black/instagram-xl.png">

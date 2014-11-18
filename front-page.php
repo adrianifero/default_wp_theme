@@ -23,7 +23,13 @@
 			<p>Morbi urna ante, consequat at porta ac, fermentum et tellus. Ut nisi massa, lacinia eleifend augue eu, fringilla euismod ligula. Proin quis iaculis tortor. Morbi fringilla sapien nec magna sodales malesuada. Donec dui lectus, tempor vel diam ut, dictum porta libero. Donec nec elementum mi, non euismod tortor. Morbi elementum, dui vel commodo elementum, purus massa tincidunt augue, ac feugiat leo dolor et nunc.</p>			
 		</div>
 		<div class="box">
-			<img alt="" class="" src="<?php echo get_stylesheet_directory_uri();?>/img/product.png">
+			<?php if (file_exists( STYLESHEETPATH.'/img/product.png' )): ?>
+				<img alt="" class="" src="<?php echo get_stylesheet_directory_uri();?>/img/product.png">
+          	<?php elseif (file_exists( TEMPLATEPATH.'/img/product.png' )): ?>
+				<img alt="" class="" src="<?php echo get_template_directory_uri();?>/img/product.png">
+            <?php else: ?>
+            	<img src="http://placehold.it/400x400" />            
+			<?php endif; ?>
 		</div>
     </div>
 </section>
@@ -33,8 +39,16 @@
        	<h2 style="font-size: 48px;margin: 0px;">General Products</h2>
        	
        	<div class="box">
-			<img alt="" class="" src="<?php echo get_stylesheet_directory_uri();?>/img/product.png">
-		</div>
+        	<?php if (file_exists( STYLESHEETPATH.'/img/product.png' )): ?>
+				<img alt="" class="" src="<?php echo get_stylesheet_directory_uri();?>/img/product.png">
+          	<?php elseif (file_exists( TEMPLATEPATH.'/img/product.png' )): ?>
+				<img alt="" class="" src="<?php echo get_template_directory_uri();?>/img/product.png">
+            <?php else: ?>
+            	<img src="http://placehold.it/400x400" />            
+			<?php endif; ?>
+            
+			
+        </div>
        	<div class="box">
 			<h2>Currently, the best solution available on the market.</h2>
 			<p>Morbi urna ante, consequat at porta ac, fermentum et tellus. Ut nisi massa, lacinia eleifend augue eu, fringilla euismod ligula. Proin quis iaculis tortor. Morbi fringilla sapien nec magna sodales malesuada. Donec dui lectus, tempor vel diam ut, dictum porta libero. Donec nec elementum mi, non euismod tortor. Morbi elementum, dui vel commodo elementum, purus massa tincidunt augue, ac feugiat leo dolor et nunc.</p>			
@@ -52,7 +66,13 @@
 			<p>Morbi urna ante, consequat at porta ac, fermentum et tellus. Ut nisi massa, lacinia eleifend augue eu, fringilla euismod ligula. Proin quis iaculis tortor. Morbi fringilla sapien nec magna sodales malesuada. Donec dui lectus, tempor vel diam ut, dictum porta libero. Donec nec elementum mi, non euismod tortor. Morbi elementum, dui vel commodo elementum, purus massa tincidunt augue, ac feugiat leo dolor et nunc.</p>			
 		</div>
 		<div class="box">
-			<img alt="" class="" src="<?php echo get_stylesheet_directory_uri();?>/img/product.png">
+			<?php if (file_exists( STYLESHEETPATH.'/img/product.png' )): ?>
+				<img alt="" class="" src="<?php echo get_stylesheet_directory_uri();?>/img/product.png">
+          	<?php elseif (file_exists( TEMPLATEPATH.'/img/product.png' )): ?>
+				<img alt="" class="" src="<?php echo get_template_directory_uri();?>/img/product.png">
+            <?php else: ?>
+            	<img src="http://placehold.it/400x400" />            
+			<?php endif; ?>
 		</div>
 		<div class="box">
 			<h2>Currently, the best solution available on the market.</h2>
@@ -94,7 +114,7 @@
        <p>E-mail</p>
        <input type="text" placeholder="Enter your e-mail" />
        <p>Interest</p>
-       <input type="text" placeholder="What's your culinary interest" />
+       <textarea placeholder="Let us know your interests and questions"></textarea>
        
     </div>
 </section>

@@ -4,15 +4,16 @@
  Description:    Default wordpress theme
  Author:         Adrian Toro
  Author URI:     http://platanocafe.ca
- Version:        0.0.7
+ Version:        0.0.8
 */
 
 /* HEADER */
 body, html, h1, h2, h3, h4, h5, h6, span, p, a, td, li { font-family: 'Open Sans', sans-serif; !important; font-style: normal; }
 body { margin:0px; }
-a { text-decoration:none; color:rgb(172, 172, 172); }
+a { text-decoration:none; color:rgb(172, 172, 172); color: black; font-weight:bold; }
+.small { font-size: 0.6em; }
 
-h1 { font-size: 28px; text-shadow: 1px 1px rgba(0, 0, 0, 0.29); }
+h1 { font-size: 28px; text-shadow: 1px 1px rgba(169, 169, 169, 1); }
 h2 { font-size: 24px; text-shadow: 1px 1px rgba(0, 0, 0, 0.29); }
 h3 { font-size: 20px; }
 h4 { font-size: 18px; }
@@ -30,7 +31,22 @@ h4 { font-size: 18px; }
 	color: white;
 }
 
-
+blockquote {
+	padding: 0 0 0 15px;
+	margin: 0 0 28px;
+	border-left: 5px solid #eee;
+	font-style: italic;
+}
+code { color: #950B0B; } 
+small { color: gray; font-size:0.4em; }
+pre {
+	background: rgb(236, 236, 236);
+	padding: 6px;
+}
+cite { color: #DFDFDF; font-style:italic; } 
+dfn { color: #DFDFDF; font-style:italic; font-size:0.6em; } 
+  
+  
 /* Responsive Sections */
 @media (max-width:500px) {
 	h1 { font-size: 28px; }
@@ -46,6 +62,47 @@ input[type="text"] {
 	font-size:14px;
 	
 }
+textarea {
+	width:98%;
+	max-width:600px;
+	height:80px;
+	border: 1px solid #bbb;
+	border-radius: 4px;
+	text-indent: 10px;
+	font-size:14px;
+}
+
+ul.unstyled, ol.unstyled {
+	list-style: none !important;
+}
+
+ol.circle {
+	counter-reset: the-counter;
+	list-style: none;
+	margin-left: 0;
+}
+ol.circle li:before {
+	content: counter(the-counter);
+	counter-increment: the-counter;
+	display: inline-block;
+	color: white;
+	background: #BCBCBC;
+	text-align: center;
+	min-width: 30px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 18px;
+	font-weight: 600;
+	margin: 3px 6px 3px 0;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: 1px 1px 3px 0 white;
+	-moz-box-shadow: 1px 1px 3px 0 white;
+	box-shadow: 1px 1px 3px 0 white;
+	-webkit-border-radius: 17px;
+	-moz-border-radius: 17px;
+	border-radius: 17px;
+}
+
 
 /* Youtube Iframe */
 iframe.youtube-player { width:100%; max-width: 940px; height:auto; min-height:300px; }
@@ -71,7 +128,7 @@ header.fixed {
 	top: 0;
 	left: 0;
 	z-index: 99;
-	opacity: 0.8;
+	opacity: 1;
 	color:#111;
 }
 
@@ -93,15 +150,15 @@ section > .content .box a:hover * { opacity:0.8; transition:all 0.4s; -webkit-tr
 section > .content h1 { margin:0px; }
 
 .black { background-color: black; color:#FFF; }
-.black a { color:#FFF; }
+.black a { color:#FFF; font-weight:bold; }
 .gray { background-color: rgb(214, 213, 213); opacity:0.9; color:#111; }
-.gray a { color:#111; }
+.gray a { color:#111; font-weight:bold;  }
 .red { background-color: rgb(83, 8, 8); }
-.red a { color:#FFF; }
-.green { background-color: rgb(141, 175, 141); }
-.green a { color:#FFF; }
+.red a { color:#FFF; font-weight:bold;  }
+.green { background-color: rgb(66, 94, 66);}
+.green a { color:#FFF; font-weight:bold;  }
 .white { background-color: white; color:#111; }
-.white a { color:#111; }
+.white a { color:#111; font-weight:bold;  }
 
 
 
@@ -117,6 +174,8 @@ section#training:hover { min-height: 620px; transition:all 0.3s; -webkit-transit
 
 /* Section Top */
 section#top { height:800px; }
+section#top.dark h1, section#top.dark h2 { color: #F9f9f9; }
+section#top.light h1, section#top.light h2 { color: black; }
 section#top > div.content { position: absolute; top: 50px; left: 50px;opacity: 0.8; }
 section#top > div.content h1 { font-size:48px; }
 
