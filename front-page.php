@@ -8,6 +8,14 @@
   
 </section>
 
+<?php if ( is_active_sidebar( 'default_top_1' ) ) : ?>
+<section id="top-sidebar" class="white widgetsarea" >
+	<div class="content" >
+	<?php dynamic_sidebar( 'default_top_1' ); ?>
+	</div>
+</section>
+<?php endif; ?>
+
 <section id="quote" class="white" style=" max-height: 1000px;overflow: hidden;position:relative;">
 	<div class="content" >
        <h2 style="font-size: 48px;margin: 0px;">"Default Quote"</h2>
@@ -92,7 +100,7 @@
 		<?php the_post(); ?>
        		<div class="box">
        			<a href="<?php the_permalink();?>">
-	       		<div class="background"><?php the_post_thumbnail('full'); ?></div>
+	       		<div class="background"><?php the_post_thumbnail('medium'); ?></div>
 				<h3><?php the_title(); ?></h3>
 				<div class="content"><?php the_excerpt(); ?></div>
 				</a>

@@ -28,8 +28,8 @@ endif; // default_custom_theme_setup
  * Register our sidebars and widgetized areas.
  *
  */
-if ( ! function_exists( 'default_custom_theme_widgets' ) ) :
-	function default_custom_theme_widgets() {
+if ( ! function_exists( 'default_custom_theme_sidebars' ) ) :
+	function default_custom_theme_sidebars() {
 
 	register_sidebar( array(
 		'name' => 'Bottom sidebar',
@@ -39,10 +39,27 @@ if ( ! function_exists( 'default_custom_theme_widgets' ) ) :
 		'before_title' => '<h2 class="rounded">',
 		'after_title' => '</h2>',
 	) );
+	register_sidebar( array(
+		'name' => 'Top sidebar',
+		'id' => 'default_top_1',
+		'before_widget' => '<div>',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="rounded">',
+		'after_title' => '</h2>',
+	) );
 }
-add_action( 'widgets_init', 'default_custom_theme_widgets' );
+add_action( 'widgets_init', 'default_custom_theme_sidebars' );
 endif; // default_custom_theme_setup
 
+
+
+// register galerie_photos_widget widget
+if ( ! function_exists( 'register_default_theme_widgets' ) ) :
+	function register_default_theme_widgets() {
+		register_widget( 'galerie_photos_widget' );
+	}
+	add_action( 'widgets_init', 'register_default_theme_widgets' );
+endif;
 /**
  * Adds galerie_photos_widget widget.
  */
@@ -62,7 +79,7 @@ class galerie_photos_widget extends WP_Widget {
 		if ( ! empty( $title ) )
 			echo $args['before_title'] . $title . $args['after_title'];
 		
-		echo '<ul class="photos">';
+		echo '<ul class="default photos widget">';
 		$the_query = new WP_Query( array( 'post_type' => $post_type, 'posts_per_page' => 40)  );
 		
 		// The Loop
@@ -126,11 +143,6 @@ class galerie_photos_widget extends WP_Widget {
 
 } // class galerie_photos_widget
 
-// register galerie_photos_widget widget
-function register_foo_widget() {
-    register_widget( 'galerie_photos_widget' );
-}
-add_action( 'widgets_init', 'register_foo_widget' );
 
 
 /* Register places post type */
