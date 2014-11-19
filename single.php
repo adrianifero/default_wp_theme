@@ -7,15 +7,26 @@
 
 <?php 
 $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail_size' );
-$url = $thumb['0']; 
+if ($thumb) : 
+	$url = $thumb['0']; 
+	$width = $thumb['1']; 
+	$height = $thumb['2']; 
+	
 ?>
-<style>
-section#top {
-background-image: url('<?php echo $url; ?>');
-background-repeat: no-repeat;
-background-size: cover;
-}
-</style>
+	
+	<style>
+    section#top {
+    background-image: url('<?php echo $url; ?>');
+    background-repeat: no-repeat;
+    background-size: cover;
+	height: <?php echo $height; ?>
+    }
+    </style>
+<?php else: ?>
+	<style>
+    section#top { height:160px; } 
+    </style> 
+<?php endif; ?>
 
 <section id="top" class="green" >
 	<div class="content">
@@ -48,13 +59,5 @@ background-size: cover;
     </div>
 </section>
 
-<section id="social" class="white" >
-	<div class="content" >
-		<img src="http://www.iconsdb.com/icons/preview/black/instagram-xl.png">
-		<img src="http://www.iconsdb.com/icons/preview/black/facebook-xl.png">
-		<img src="http://www.iconsdb.com/icons/preview/black/twitter-xl.png">
-		<img src="http://www.iconsdb.com/icons/preview/black/pinterest-xl.png">
-    </div>
-</section>
 	
 <?php get_footer(); ?>

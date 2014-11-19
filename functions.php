@@ -1,20 +1,47 @@
 <?php 
 
-add_action( 'after_setup_theme', 'default_custom_theme_setup' );
-
-function default_custom_theme_setup() {
-   
-	add_image_size( 'photo_large_crop', 960, 450, true ); //(cropped)
-	add_theme_support( 'post-thumbnails' );
+if ( ! isset( $content_width ) ) {
+	$content_width = 940;
 }
+
+if ( ! function_exists( 'default_custom_theme_setup' ) ) :
+	function default_custom_theme_setup() {
+	   
+		add_image_size( 'photo_large_crop', 960, 450, true ); //(cropped)
+		add_theme_support( 'post-thumbnails' );
+		load_theme_textdomain( 'translate', get_template_directory() . '/languages' );
+		add_theme_support( 'title-tag' );
+		add_theme_support( 'html5', array(
+		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
+		) );
+		add_editor_style( ); 
+		register_nav_menus( array(
+			'topbar' => 'Top Bar',
+		) );
+		
+	}
+	add_action( 'after_setup_theme', 'default_custom_theme_setup' );
+endif; // default_custom_theme_setup
 
 
 /**
- * Register nav menu
+ * Register our sidebars and widgetized areas.
+ *
  */
-register_nav_menus( array(
-	'topbar' => 'Top Bar',
-) );
+if ( ! function_exists( 'default_custom_theme_widgets' ) ) :
+	function default_custom_theme_widgets() {
+
+	register_sidebar( array(
+		'name' => 'Bottom sidebar',
+		'id' => 'default_bottom_1',
+		'before_widget' => '<div>',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="rounded">',
+		'after_title' => '</h2>',
+	) );
+}
+add_action( 'widgets_init', 'default_custom_theme_widgets' );
+endif; // default_custom_theme_setup
 
 /**
  * Adds galerie_photos_widget widget.

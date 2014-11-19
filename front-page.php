@@ -118,14 +118,5 @@
        
     </div>
 </section>
-
-<section id="social" class="white" >
-	<div class="content" >
-		<img src="http://www.iconsdb.com/icons/preview/black/instagram-xl.png">
-		<img src="http://www.iconsdb.com/icons/preview/black/facebook-xl.png">
-		<img src="http://www.iconsdb.com/icons/preview/black/twitter-xl.png">
-		<img src="http://www.iconsdb.com/icons/preview/black/pinterest-xl.png">
-    </div>
-</section>
 	
 <?php get_footer(); ?>

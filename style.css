@@ -52,9 +52,21 @@ dfn { color: #DFDFDF; font-style:italic; font-size:0.6em; }
 	h1 { font-size: 28px; }
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="search"],
+input[type="email"] {
 	width:98%;
 	max-width:600px;
+	height:40px;
+	border: 1px solid #bbb;
+	border-radius: 4px;
+	text-indent: 10px;
+	font-size:14px;
+	
+}
+input[type="submit"] {
+	width:98%;
+	max-width:100px;
 	height:40px;
 	border: 1px solid #bbb;
 	border-radius: 4px;
@@ -114,10 +126,14 @@ iframe.youtube-player { width:100%; max-width: 940px; height:auto; min-height:30
 header { padding:12px 22px; min-height: 40px; border-bottom: 1px solid #EEE; position:relative; }
 header div.logo { position:absolute; top:10px; left:20px; margin:0px; } 
 header div.logo h1 { padding:0; margin:0; font-size: 20px; }
-header nav#mainmenu { position:absolute; top: 12px; right: 60px; }
-header nav#mainmenu ul { margin: 0; padding: 0; }
-header nav#mainmenu ul li { display: inline-block; vertical-align:top; padding: 0 5px; list-style: none;  }
-header nav#mainmenu ul ul.sub-menu { position: absolute; top: 40px; left: 0; background: rgba(255, 255, 255, 0.54); }
+header nav { position:absolute; top: 12px; right: 60px; }
+header nav ul { margin: 0; padding: 0; }
+header nav ul li { position:relative; display: inline-block; vertical-align:top; min-width: 110px; padding: 0 5px; list-style: none;  }
+header nav ul li ul.sub-menu { position: absolute; display:none; top: 22px; left: 0; background: rgba(255, 255, 255, 0.54); font-size: 0.9em; }
+header nav ul li:hover ul.sub-menu { display:block; } 
+header nav ul li ul.sub-menu li { padding:4px; } 
+header nav ul li ul.sub-menu li:hover { background:black; }
+header nav ul li ul.sub-menu li:hover a, header nav ul li ul.sub-menu li:hover p, header nav ul li ul.sub-menu li:hover span { color:white; p}
 
 /* Fixed Header  */
 header.fixed {
@@ -149,6 +165,9 @@ section > .content .box a { text-decoration:none; transition:all 0.4s; -webkit-t
 section > .content .box a:hover * { opacity:0.8; transition:all 0.4s; -webkit-transition:all 0.4s; }
 section > .content h1 { margin:0px; }
 
+/* WIDGETS */
+section.widgetsarea > .content > div { display:inline-block; vertical-align: top; margin: 4px; padding: 12px; background: whitesmoke; }
+
 .black { background-color: black; color:#FFF; }
 .black a { color:#FFF; font-weight:bold; }
 .gray { background-color: rgb(214, 213, 213); opacity:0.9; color:#111; }
@@ -173,10 +192,14 @@ section#training:hover { min-height: 620px; transition:all 0.3s; -webkit-transit
 
 
 /* Section Top */
-section#top { height:800px; }
+section#top { height:800px; text-align:left; }
 section#top.dark h1, section#top.dark h2 { color: #F9f9f9; }
 section#top.light h1, section#top.light h2 { color: black; }
-section#top > div.content { position: absolute; top: 50px; left: 50px;opacity: 0.8; }
+section#top > div.content { padding: 16px; opacity: 0.8; text-align:left;}
+section#top > div.content { margin:8px; opacity: 0.9; }
+section#top.left > div.content { text-align:left; }
+section#top.right > div.content { text-align:right; }
+section#top.center > div.content { text-align:center; }
 section#top > div.content h1 { font-size:48px; }
 
 /* Section Quote */
@@ -219,11 +242,11 @@ height: auto !important;
 /* DEFAULT THEME OVERRIDES */ 
 
 /* Images */
-section#top { background-image:url('img/background.jpg') ; background-repeat:no-repeat; background-size: cover; }
+section#top { background-image:url('img/background.jpg') ; background-repeat:no-repeat; background-size: cover; background-position: center; margin-top:49px; }
 section#quote { } 
-section#services { background-image:url('img/section-.jpg') ; background-repeat:no-repeat; background-size: cover; background-position-y: bottom; }
+section#services { background-image:url('img/section-.jpg') ; background-repeat:no-repeat; background-size: cover; background-position-y: bottom; background-position: center;}
 section#general {  } 
-section#training { background-image:url('img/section-.jpg') ; background-repeat:no-repeat; background-size: cover; background-position-y: bottom; } 
+section#training { background-image:url('img/section-.jpg') ; background-repeat:no-repeat; background-size: cover; background-position-y: bottom; background-position: center;} 
 section#news { } 
 section#subscribe { } 
 section#social { } 
