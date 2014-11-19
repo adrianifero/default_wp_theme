@@ -27,6 +27,7 @@ if ($thumb) :
 <?php endif; ?>
 
 <section id="top" class="green" >
+	<div class="gradient"></div>
 	<div class="content">
        <h1><?php the_title(); ?></h1>
     </div>
