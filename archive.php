@@ -5,7 +5,7 @@
 <?php if(have_posts()): ?>
 
 <section id="header" class="white" >
-Archive
+	<h1><?php post_type_archive_title(); ?></h1>
 </section>
 
 <section id="archive" class="white" >

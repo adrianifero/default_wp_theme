@@ -4,7 +4,7 @@
  Description:    Default wordpress theme
  Author:         Adrian Toro
  Author URI:     http://platanocafe.ca
- Version:        0.1.1
+ Version:        0.1.2
 */
 
 /* HEADER */
@@ -293,7 +293,7 @@ section#training:hover { min-height: 620px; transition:all 0.3s; -webkit-transit
 
 
 /* Section Top */
-section#top { height:800px; text-align:left; }
+section#top { height:800px; text-align:left; margin-top:49px; }
 section#top.dark h1, section#top.dark h2 { color: #F9f9f9; }
 section#top.light h1, section#top.light h2 { color: black; }
 section#top > div.content { padding: 16px; opacity: 0.8; text-align:left;}
@@ -306,7 +306,7 @@ section#top > div.content h1 { font-size:48px; }
 
 section#top > div.gradient {
 	width: 100%;
-	height: 390px;
+	height: 170px;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -314,6 +314,9 @@ section#top > div.gradient {
 }
 section#top.left > div.gradient { }
 section#top.right > div.gradient { background-image: -webkit-gradient( linear, right top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(255, 255, 255, 0)), color-stop(.4,rgba(146, 146, 146, 0.08)) ); }
+	
+/* Section Header */	
+section#header { margin-top:49px; }	
 	
 /* Section Quote */
 section#quote { padding: 300px 50px; } 
@@ -355,7 +358,7 @@ height: auto !important;
 /* DEFAULT THEME OVERRIDES */ 
 
 /* Images */
-section#top { background-image:url('img/background.jpg') ; background-repeat:no-repeat; background-size: cover; background-position: center; margin-top:49px; }
+section#top { background-image:url('img/background.jpg') ; background-repeat:no-repeat; background-size: cover; background-position: center; }
 section#quote { } 
 section#services { background-image:url('img/section-.jpg') ; background-repeat:no-repeat; background-size: cover; background-position-y: bottom; background-position: center;}
 section#general {  } 
