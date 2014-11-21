@@ -26,7 +26,7 @@ endif; // default_custom_theme_setup
 
 
 if ( ! function_exists('default_theme_unregister_default_wp_widgets') ) :
-	function unregister_default_wp_widgets() {
+	function default_theme_unregister_default_wp_widgets() {
 		unregister_widget('WP_Widget_Calendar');
 		unregister_widget('WP_Widget_Archives');
 		unregister_widget('WP_Widget_Links');
