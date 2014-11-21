@@ -4,11 +4,11 @@
  Description:    Default wordpress theme
  Author:         Adrian Toro
  Author URI:     http://platanocafe.ca
- Version:        0.1.2
+ Version:        0.1.3
 */
 
 /* HEADER */
-body, html, h1, h2, h3, h4, h5, h6, span, p, a, td, li { font-family: 'Open Sans', sans-serif; !important; font-style: normal; }
+body, html, h1, h2, h3, h4, h5, h6, span, p, a, td, li { font-family: 'Open Sans', sans-serif; !important; font-style: normal; font-size: 16px; }
 body { margin:0px; }
 a { text-decoration:none; color: black; font-weight:bold;  }
 a:hover { opactiy:0.8s; color:rgb(172, 172, 172); transition: all 0.3s; -webkit-transition: all 0.3s; }
@@ -22,6 +22,7 @@ h4 { font-size: 18px; }
 /* Wordpress Default Elements */
 .alignleft { float: left; margin-right: 20px; }
 .alignright { float: right; margin-left: 20px; }
+.aligncenter { margin-left: auto; margin-right: auto; display: block; }
 .wp-caption { border: 4px solid black; padding: 4px; }
 .wp-caption-text {
 	text-align: center;
@@ -144,11 +145,17 @@ ol.circle li:before {
 }
 
 
-/* Youtube Iframe */
-iframe.youtube-player { width:100%; max-width: 940px; height:auto; min-height:300px; }
+/* Video Iframes */
+iframe { width:100%; max-width: 940px; height:auto; min-height:300px; display: block; margin: 10px auto !important; }
 @media (min-width:600px) {
-	iframe.youtube-player { width:100%; height:auto; min-height:600px; }
+	iframe{ width:100%; height:auto; min-height:600px; }
 }
+
+iframe[id^="twitter-widget"], iframe.youtube-player { width:100%; max-width: 940px; height:auto; min-height:300px; display: block; margin: 0 auto; }
+@media (min-width:600px) {
+	iframe[id^="twitter-widget"], iframe.youtube-player { width:100%; height:auto; min-height:600px; }
+}
+
 
 /* Header Section */
 header { height:48px; min-height: 40px; border-bottom: 1px solid #EEE; position:relative; }

@@ -8,13 +8,14 @@ if ( ! function_exists( 'default_custom_theme_setup' ) ) :
 	function default_custom_theme_setup() {
 	   
 		add_image_size( 'photo_large_crop', 960, 450, true ); //(cropped)
+		add_image_size( 'photo_small_thumbnail', 100, 58, true ); //(cropped)		
 		add_theme_support( 'post-thumbnails' );
 		load_theme_textdomain( 'translate', get_template_directory() . '/languages' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
 		) );
-		add_editor_style( ); 
+		add_editor_style( 'css/editor-style.css' ); 
 		register_nav_menus( array(
 			'topbar' => 'Top Bar',
 		) );
@@ -22,6 +23,113 @@ if ( ! function_exists( 'default_custom_theme_setup' ) ) :
 	}
 	add_action( 'after_setup_theme', 'default_custom_theme_setup' );
 endif; // default_custom_theme_setup
+
+
+if ( ! function_exists('default_theme_unregister_default_wp_widgets') ) :
+	function unregister_default_wp_widgets() {
+		unregister_widget('WP_Widget_Calendar');
+		unregister_widget('WP_Widget_Archives');
+		unregister_widget('WP_Widget_Links');
+		unregister_widget('WP_Widget_Meta');
+		unregister_widget('WP_Widget_Recent_Comments');
+		unregister_widget('WP_Widget_RSS');
+		unregister_widget('WP_Widget_Search');
+		unregister_widget('WP_Widget_Text');
+		unregister_widget('WP_Widget_Categories');
+		unregister_widget('WP_Widget_Recent_Posts');
+		unregister_widget('WP_Widget_Tag_Cloud');
+		unregister_widget('WP_Nav_Menu_Widget');
+		unregister_widget('WP_Widget_RSS');
+	
+	}
+	add_action('widgets_init', 'default_theme_unregister_default_wp_widgets');
+endif;
+
+
+/**
+ * Enqueue scripts and styles
+ */
+if ( ! function_exists( 'default_theme_remove_header' ) ) :
+	function default_theme_name_scripts() {
+		
+		// Deregister the included library
+		wp_deregister_script( 'jquery' );
+		 
+		// Register the library again from Google's CDN
+		wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', array(), null, false );
+		
+		// Register Custom Script
+		wp_enqueue_script( 'custom-script', get_template_directory_uri() . '/js/custom.js', array( 'jquery' ), '1.0.0', true );
+		
+	}
+	
+	add_action( 'wp_enqueue_scripts', 'default_theme_name_scripts' );
+endif; // default_theme_remove_header
+
+/**
+ * Enqueue Admin scripts and styles
+ */
+function default_theme_admin_name_scripts() {
+	
+	global $wp_styles;
+	wp_enqueue_style( 'default_admin_style', get_template_directory_uri().'/css/admin.css' , false );
+	wp_enqueue_style( 'child_admin_style_if_any', get_stylesheet_directory_uri().'/css/admin.css' , false );
+	$wp_styles->add_data( 'face3_theme_options', 'rtl', true );
+}
+add_action( 'admin_print_styles', 'default_theme_admin_name_scripts'  );
+
+
+/* -------------------------------------------------- */
+/* Remove Header Spacing
+/* -------------------------------------------------- */
+if ( ! function_exists( 'default_theme_remove_header' ) ) :
+
+  function default_theme_remove_header() {
+    remove_action('wp_head', '_admin_bar_bump_cb');
+  }
+add_action('get_header', 'default_theme_remove_header');
+endif; // default_theme_remove_header
+
+
+/* -------------------------------------------------- */
+/* SHOW FEATURED IMAGE ON POST AND PAGES COLUMN 
+/* -------------------------------------------------- */
+
+// GET FEATURED IMAGE  
+function default_theme_get_featured_image($post_ID) {  
+    $post_thumbnail_id = get_post_thumbnail_id($post_ID);  
+    if ($post_thumbnail_id) {  
+        $post_thumbnail_img = wp_get_attachment_image_src($post_thumbnail_id, 'photo_small_thumbnail');  
+        return $post_thumbnail_img[0];  
+    }else{ }
+}  
+
+// ADD NEW COLUMN
+function default_theme_admin_columns_head($defaults) {
+	$defaults['featured_image'] = 'Featured Image';
+	return $defaults;
+}
+
+// SHOW THE FEATURED IMAGE
+function default_theme_admin_columns_content($column_name, $post_ID) {
+	if ($column_name == 'featured_image') {
+		$post_featured_image = default_theme_get_featured_image($post_ID); 
+		if ($post_featured_image) {
+			echo '<img src="' . $post_featured_image . '" style="width: 100px; height:auto;"/>';
+		}
+	}
+}
+
+// Show featured images on posts
+add_filter('manage_posts_columns', 'default_theme_admin_columns_head');  
+add_action('manage_posts_custom_column', 'default_theme_admin_columns_content', 10, 2);  
+
+// Show featured images on pages
+add_filter('manage_pages_columns', 'default_theme_admin_columns_head');  
+add_action('manage_pages_custom_column', 'default_theme_admin_columns_content', 10, 2);  
+/* -------------------------------------------------- */
+
+
 
 
 /**
