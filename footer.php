@@ -1,5 +1,5 @@
 <?php if ( is_active_sidebar( 'default_bottom_1' ) ) : ?>
-<section id="bottom-sidebar" class="white widgetsarea" >
+<section id="bottom-sidebar" class="black widgetsarea" >
     <div class="content" >
     <?php dynamic_sidebar( 'default_bottom_1' ); ?>
     </div>

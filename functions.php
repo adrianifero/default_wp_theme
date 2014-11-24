@@ -15,6 +15,7 @@ if ( ! function_exists( 'default_custom_theme_setup' ) ) :
 		add_theme_support( 'html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
 		) );
+		add_filter('widget_text', 'do_shortcode'); // Allow Shortcodes on Sidebar
 		add_editor_style( 'css/editor-style.css' ); 
 		register_nav_menus( array(
 			'topbar' => 'Top Bar',
@@ -34,7 +35,7 @@ if ( ! function_exists('default_theme_unregister_default_wp_widgets') ) :
 		unregister_widget('WP_Widget_Recent_Comments');
 		unregister_widget('WP_Widget_RSS');
 		unregister_widget('WP_Widget_Search');
-		unregister_widget('WP_Widget_Text');
+		//unregister_widget('WP_Widget_Text');
 		unregister_widget('WP_Widget_Categories');
 		unregister_widget('WP_Widget_Recent_Posts');
 		unregister_widget('WP_Widget_Tag_Cloud');
@@ -58,8 +59,10 @@ if ( ! function_exists( 'default_theme_remove_header' ) ) :
 		// Register the library again from Google's CDN
 		wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', array(), null, false );
 		
-		// Register Custom Script
+		// Register Custom Scripts
 		wp_enqueue_script( 'custom-script', get_template_directory_uri() . '/js/custom.js', array( 'jquery' ), '1.0.0', true );
+		wp_enqueue_script( 'fitvids', get_template_directory_uri() . '/js/fitvids.js', array( 'jquery' ), '1.0.0', true );
+		
 		
 	}
 	
@@ -142,7 +145,7 @@ if ( ! function_exists( 'default_custom_theme_sidebars' ) ) :
 	register_sidebar( array(
 		'name' => 'Bottom sidebar',
 		'id' => 'default_bottom_1',
-		'before_widget' => '<div>',
+		'before_widget' => '<div class="thiswidget">',
 		'after_widget' => '</div>',
 		'before_title' => '<h2 class="rounded">',
 		'after_title' => '</h2>',
@@ -150,7 +153,15 @@ if ( ! function_exists( 'default_custom_theme_sidebars' ) ) :
 	register_sidebar( array(
 		'name' => 'Top sidebar',
 		'id' => 'default_top_1',
-		'before_widget' => '<div>',
+		'before_widget' => '<div class="thiswidget">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="rounded">',
+		'after_title' => '</h2>',
+	) );
+	register_sidebar( array(
+		'name' => 'Right sidebar',
+		'id' => 'default_right_1',
+		'before_widget' => '<div class="thiswidget">',
 		'after_widget' => '</div>',
 		'before_title' => '<h2 class="rounded">',
 		'after_title' => '</h2>',
@@ -290,3 +301,126 @@ function register_place_post_type() {
 	register_post_type( 'place', $args );
 }
 add_action( 'init', 'register_place_post_type' );
+
+
+
+/**
+ * Adds a box to the main column on the Post and Page edit screens.
+ */
+function default_theme_add_meta_box() {
+
+	$screens = array( 'post', 'page' );
+
+	foreach ( $screens as $screen ) {
+
+		add_meta_box(
+			'default_article_info',
+			__( 'Article Info', 'default' ),
+			'default_theme_articleinfo_meta_box_callback',
+			$screen,
+			'side',
+			'core'
+		);
+	}
+}
+add_action( 'add_meta_boxes', 'default_theme_add_meta_box' );
+
+/**
+ * Prints the box content.
+ * 
+ * @param WP_Post $post The object for the current post/page.
+ */
+function default_theme_articleinfo_meta_box_callback( $post ) {
+
+	// Add an nonce field so we can check for it later.
+	wp_nonce_field( 'default_theme_articleinfo_meta_box', 'default_theme_articleinfo_meta_box_nonce' );
+
+	/*
+	 * Use get_post_meta() to retrieve an existing value
+	 * from the database and use the value for the form.
+	 */
+	$featured_video = get_post_meta( $post->ID, '_featured_video', true );
+
+	echo '<label for="default_theme_featured_video">';
+	_e( 'Insert a video link from Youtube', 'myplugin_textdomain' );
+	echo '</label> ';
+	echo '<input type="text" id="default_theme_featured_video" name="default_theme_featured_video" value="' . esc_attr( $featured_video ) . '" size="25" />';
+}
+
+/**
+ * When the post is saved, saves our custom data.
+ *
+ * @param int $post_id The ID of the post being saved.
+ */
+function default_theme_save_meta_box_data( $post_id ) {
+	
+	if ( ! isset( $_POST['default_theme_articleinfo_meta_box_nonce'] ) ) {
+		return;
+	}
+	if ( ! wp_verify_nonce( $_POST['default_theme_articleinfo_meta_box_nonce'], 'default_theme_articleinfo_meta_box' ) ) {
+		return;
+	}
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+	
+	// Check the user's permissions.
+	if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+
+		if ( ! current_user_can( 'edit_page', $post_id ) ) {
+			return;
+		}
+
+	} else {
+
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+	}
+
+	/* OK, it's safe for us to save the data now. */
+	
+	if ( ! isset( $_POST['default_theme_featured_video'] ) ) {
+		return;
+	}
+
+	$featured_video = sanitize_text_field( $_POST['default_theme_featured_video'] );
+
+	update_post_meta( $post_id, '_featured_video', $featured_video );
+}
+add_action( 'save_post', 'default_theme_save_meta_box_data' );
+
+/* ******************** */
+/* Get Youtube Video
+/* ******************** */
+// Linkify youtube URLs which are not already links.
+if ( ! function_exists( 'linkifyYouTubeURLs' ) ) :
+	function embedfyYouTubeURLs($text) {
+		$text = preg_replace('~
+			# Match non-linked youtube URL in the wild. (Rev:20130823)
+			https?://         # Required scheme. Either http or https.
+			(?:[0-9A-Z-]+\.)? # Optional subdomain.
+			(?:               # Group host alternatives.
+			  youtu\.be/      # Either youtu.be,
+			| youtube         # or youtube.com or
+			  (?:-nocookie)?  # youtube-nocookie.com
+			  \.com           # followed by
+			  \S*             # Allow anything up to VIDEO_ID,
+			  [^\w\s-]       # but char before ID is non-ID char.
+			)                 # End host alternatives.
+			([\w-]{11})      # $1: VIDEO_ID is exactly 11 chars.
+			(?=[^\w-]|$)     # Assert next char is non-ID or EOS.
+			(?!               # Assert URL is not pre-linked.
+			  [?=&+%\w.-]*    # Allow URL (query) remainder.
+			  (?:             # Group pre-linked alternatives.
+				[\'"][^<>]*>  # Either inside a start tag,
+			  | </a>          # or inside <a> element text contents.
+			  )               # End recognized pre-linked alts.
+			)                 # End negative lookahead assertion.
+			[?=&+%\w.-]*        # Consume any URL (query) remainder.
+			~ix', 
+			'<iframe width="460" height="259" src="//www.youtube.com/embed/$1?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>',
+			$text);
+		return $text;
+	}
+endif; 

@@ -17,11 +17,13 @@
 
 <body style="margin: 0;font-family: 'Open Sans', sans-serif;color: #EEE;">
 	<header id="header" class="fixed">
-		<div class="logo">
-			<h1 class="title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
-		</div>		
-		<nav id="mainmenu">
-			<?php wp_nav_menu( array( 'theme_location' => 'topbar', 'menu_class' => 'menu' ) ); ?>
-		</nav>	
-	</header>
+    	<div class="container">
+			<div class="logo">
+				<h1 class="title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+			</div>		
+			<nav id="mainmenu">
+				<?php wp_nav_menu( array( 'theme_location' => 'topbar', 'menu_class' => 'menu' ) ); ?>
+			</nav>	
+		</div>
+    </header>
     

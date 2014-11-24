@@ -4,67 +4,59 @@
 <?php while(have_posts()): ?>
 
 <?php 
+$featured_video = get_post_meta( $post->ID, '_featured_video', true );
 $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail_size' );
+
 if ($thumb) : 
 	$url = $thumb['0']; 
 	$width = $thumb['1']; 
-	$height = $thumb['2']; 
+	$height = $thumb['2'];
 	
 ?>
-	
 	<style>
     section#top {
-    background-image: url('<?php echo $url; ?>');
-    background-repeat: no-repeat;
-    background-size: cover;
-	height: <?php echo $height; ?>
+    	background-image: url('<?php echo $url; ?>');
+		height: <?php if ( empty($featured_video)) { echo $height; } ?>px;
     }
     </style>
-<?php else: ?>
-	<style>
-    section#top { height:160px; } 
-    </style> 
 <?php endif; ?>
 
+
 <section id="top" class="green" >
-	<div class="gradient"></div>
 	<div class="content">
-       <h1><?php the_title(); ?></h1>
+    	<div class="info <?php echo !empty($featured_video) ? 'column' :''; ?>">
+	       	<h1><?php the_title(); ?></h1>
+           	<?php $excerpt = get_the_excerpt(); if (!empty($excerpt)): ?>
+		   		<p><?php the_excerpt();?></p>
+			<?php endif; ?>
+    	</div>
+        
+        <?php if ( !empty($featured_video) ): ?>
+        	<div class="video column">
+        		<?php echo embedfyYouTubeURLs($featured_video); ?>
+        	</div>
+        <?php endif; ?>
     </div>
   
 </section>
-
-<?php if ( is_active_sidebar( 'default_top_1' ) ) : ?>
-<section id="top-sidebar" class="white widgetsarea" >
-	<div class="content" >
-	<?php dynamic_sidebar( 'default_top_1' ); ?>
-	</div>
-</section>
-<?php endif; ?>
 
 <section id="single" class="white" >
 	<div class="content left" >       		
 		<?php the_post(); ?>
 		<?php the_content(); ?>
-	</div>				
+	</div>
+    
+    <?php if ( is_active_sidebar( 'default_right_1' ) ) : ?>
+    <div class="sidebar right">
+    	<div class="content" >
+			<?php dynamic_sidebar( 'default_right_1' ); ?>
+		</div>
+    </div>	
+	<?php endif; ?>
+			
 </section>
 <?php endwhile; ?>
 <?php endif; ?>
-
-
-
-<section id="subscribe" class="white" >
-	<div class="content" >
-       <h1 style="font-size: 48px;margin: 0px;">Subscribe</h1>
-       <p>Name</p>
-       <input type="text" placeholder="Enter your name" />
-       <p>E-mail</p>
-       <input type="text" placeholder="Enter your e-mail" />
-       <p>Interest</p>
-       <input type="text" placeholder="What's your culinary interest" />
-       
-    </div>
-</section>
 
 	
 <?php get_footer(); ?>
