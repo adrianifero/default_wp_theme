@@ -36,7 +36,7 @@ if ($thumb) :
 <?php endif; ?>
 
 <section id="page" class="white" >
-	<div class="content left" >       		
+	<div class="content" >       		
 		<?php the_post(); ?>
 		<?php the_content(); ?>
 	</div>				
