@@ -4,6 +4,10 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 940;
 }
 
+@ini_set( 'upload_max_size' , '64M' );
+@ini_set( 'post_max_size', '64M');
+@ini_set( 'max_execution_time', '300' );
+
 if ( ! function_exists( 'default_custom_theme_setup' ) ) :
 	function default_custom_theme_setup() {
 	   
@@ -92,6 +96,30 @@ if ( ! function_exists( 'default_theme_remove_header' ) ) :
   }
 add_action('get_header', 'default_theme_remove_header');
 endif; // default_theme_remove_header
+
+
+
+/* -------------------------------------------------- */
+/* ADD SHORTCODES
+/* -------------------------------------------------- */
+function default_theme_login_form_shortcode( $atts, $content = null ) {
+ 
+	extract( shortcode_atts( array(
+      'redirect' => ''
+      ), $atts ) );
+ 
+	if (!is_user_logged_in()) {
+		if($redirect) {
+			$redirect_url = $redirect;
+		} else {
+			$redirect_url = get_permalink();
+		}
+		$form = wp_login_form(array('echo' => false, 'redirect' => $redirect_url ));
+	} 
+	return $form;
+}
+add_shortcode('DT_login', 'default_theme_login_form_shortcode');
+
 
 
 /* -------------------------------------------------- */
