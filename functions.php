@@ -310,6 +310,9 @@ add_action( 'init', 'register_place_post_type' );
 function default_theme_add_meta_box() {
 
 	$screens = array( 'post', 'page' );
+	
+	// Show meta box in all post types:
+	$screens = get_post_types( '', 'names' ); 	
 
 	foreach ( $screens as $screen ) {
 
