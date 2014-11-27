@@ -1,9 +1,9 @@
 <?php get_header(); ?>
 
-<section id="top" class="green" >
+<section id="top" class="homepage image green" >
 	<div class="content">
-       <h1 style="font-size: 48px;margin: 0px;">Default Title</h1>
-       <h2 style="font-size: 14px;">Default Tagline</h2>
+       <h1>Default Title</h1>
+       <h2>Default Tagline</h2>
     </div>
   
 </section>
@@ -25,7 +25,7 @@
 
 <section id="services" class="white" >
 	<div class="content" >
-       <h2 style="font-size: 48px;margin: 0px;">Services</h2>
+       <h2>Services</h2>
        <div class="box">
 			<h2>Currently, the best solution available on the market.</h2>
 			<p>Morbi urna ante, consequat at porta ac, fermentum et tellus. Ut nisi massa, lacinia eleifend augue eu, fringilla euismod ligula. Proin quis iaculis tortor. Morbi fringilla sapien nec magna sodales malesuada. Donec dui lectus, tempor vel diam ut, dictum porta libero. Donec nec elementum mi, non euismod tortor. Morbi elementum, dui vel commodo elementum, purus massa tincidunt augue, ac feugiat leo dolor et nunc.</p>			
@@ -44,7 +44,7 @@
 
 <section id="general" class="white" >
 	<div class="content" >
-       	<h2 style="font-size: 48px;margin: 0px;">General Products</h2>
+       	<h2>General Products</h2>
        	
        	<div class="box">
         	<?php if (file_exists( STYLESHEETPATH.'/img/product.png' )): ?>
@@ -67,7 +67,7 @@
 
 <section id="training" class="white" >
 	<div class="content" >
-       <h2 style="font-size: 48px;margin: 0px;">Training</h2>
+       <h2>Training</h2>
     
 		<div class="box">
 			<h2>Currently, the best solution available on the market.</h2>
@@ -94,7 +94,7 @@
 <?php if(have_posts()): ?>
 <section id="news" class="white" >
 	<div class="content" >
-       	<h2 style="font-size: 48px;margin: 0px;">Latest News</h2>
+       	<h2>Latest News</h2>
        		
 		<?php while(have_posts()): ?>
 		<?php the_post(); ?>
@@ -116,7 +116,7 @@
 
 <section id="subscribe" class="white" >
 	<div class="content" >
-       <h2 style="font-size: 48px;margin: 0px;">Subscribe</h2>
+       <h2>Subscribe</h2>
        <p>Name</p>
        <input type="text" placeholder="Enter your name" />
        <p>E-mail</p>
