@@ -41,10 +41,6 @@ if ($thumb) :
 </section>
 
 <section id="single" class="white" >
-	<div class="content left" >       		
-		<?php the_post(); ?>
-		<?php the_content(); ?>
-	</div>
     
     <?php if ( is_active_sidebar( 'default_right_1' ) ) : ?>
     <div class="sidebar right">
@@ -53,6 +49,11 @@ if ($thumb) :
 		</div>
     </div>	
 	<?php endif; ?>
+    
+	<div class="content left" >       		
+		<?php the_post(); ?>
+		<?php the_content(); ?>
+	</div>
 			
 </section>
 <?php endwhile; ?>
