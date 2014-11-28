@@ -4,8 +4,10 @@
 <?php /* SECTION ARCHIVE */?>
 <?php if(have_posts()): ?>
 
-<section id="header" class="white" >
-	<h1><?php post_type_archive_title(); ?></h1>
+<section id="top" class="green" >
+	<div class="content">
+		<h1><?php post_type_archive_title(); ?></h1>
+	</div>
 </section>
 
 <section id="archive" class="white" >

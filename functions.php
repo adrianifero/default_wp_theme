@@ -115,7 +115,7 @@ function default_theme_login_form_shortcode( $atts, $content = null ) {
 			$redirect_url = get_permalink();
 		}
 		$form = wp_login_form(array('echo' => false, 'redirect' => $redirect_url ));
-	} 
+	}
 	return $form;
 }
 add_shortcode('DT_login', 'default_theme_login_form_shortcode');

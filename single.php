@@ -16,7 +16,7 @@ if ($thumb) :
 	<style>
     section#top {
     	background-image: url('<?php echo $url; ?>');
-		height: <?php if ( empty($featured_video)) { echo $height; } ?>px;
+		/* height: <?php if ( empty($featured_video)) { echo $height; } ?>px; */
     }
     </style>
 <?php endif; ?>
