@@ -4,7 +4,7 @@
  Description:    Default wordpress theme
  Author:         Adrian Toro
  Author URI:     http://platanocafe.ca
- Version:        0.2.2
+ Version:        0.2.3
 */
 
 /* HEADER */
@@ -307,12 +307,13 @@ section#top div.content div.info.column p { font-size:12px; }
 section#top div.content div.video.column { max-width:500px; }
 
 /* When just title and excerpt: */
+section#top div.content { text-align:left; }
 section#top div.content div.info,
 section#top div.content > p,
 section#top div.content > h1,
 section#top div.content > h2,
 section#top div.content > h3,
-section#top div.content > span { max-width:1600px; margin:0 auto; text-align:left; }
+section#top div.content > span { max-width:1600px; margin:0 auto; }
 
 @media (max-width:759px) {
 	section#top { height:auto !important; }

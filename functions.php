@@ -98,29 +98,15 @@ add_action('get_header', 'default_theme_remove_header');
 endif; // default_theme_remove_header
 
 
-
 /* -------------------------------------------------- */
-/* ADD SHORTCODES
+/* RChange Custom Excerpt More Code
 /* -------------------------------------------------- */
-function default_theme_login_form_shortcode( $atts, $content = null ) {
- 
-	extract( shortcode_atts( array(
-      'redirect' => ''
-      ), $atts ) );
- 
-	if (!is_user_logged_in()) {
-		if($redirect) {
-			$redirect_url = $redirect;
-		} else {
-			$redirect_url = get_permalink();
-		}
-		$form = wp_login_form(array('echo' => false, 'redirect' => $redirect_url ));
-	} 
-	return $form;
-}
-add_shortcode('DT_login', 'default_theme_login_form_shortcode');
-
-
+if ( ! function_exists( 'default_theme_custom_excerpt_more' ) ) :
+	function default_theme_custom_excerpt_more($more) {
+		return '…';
+	}
+add_filter('excerpt_more', 'default_theme_custom_excerpt_more');
+endif; // default_theme_custom_excerpt_more
 
 /* -------------------------------------------------- */
 /* SHOW FEATURED IMAGE ON POST AND PAGES COLUMN 
