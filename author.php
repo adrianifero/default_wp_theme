@@ -5,11 +5,9 @@ $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : g
 ?>
 
 <section id="top" class="green page" >
-	<div class="gradient"></div>
 	<div class="content">
        <h1>Articles by <?php echo $curauth->display_name; ?></h1>
     </div>
-  
 </section>
 
 

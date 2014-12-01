@@ -194,6 +194,22 @@ if ( ! function_exists( 'default_custom_theme_sidebars' ) ) :
 		'before_title' => '<h2 class="rounded">',
 		'after_title' => '</h2>',
 	) );
+	register_sidebar( array(
+		'name' => 'Mobile Top sidebar',
+		'id' => 'default_mobile_top',
+		'before_widget' => '<div class="thiswidget">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="rounded">',
+		'after_title' => '</h2>',
+	) );
+	register_sidebar( array(
+		'name' => 'Mobile Bottom sidebar',
+		'id' => 'default_mobile_bottom',
+		'before_widget' => '<div class="thiswidget">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="rounded">',
+		'after_title' => '</h2>',
+	) );
 }
 add_action( 'widgets_init', 'default_custom_theme_sidebars' );
 endif; // default_custom_theme_setup

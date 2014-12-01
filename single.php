@@ -23,7 +23,7 @@ if ($thumb) :
 
 
 <section id="top" class="green" >
-	<div class="content">
+	<div class="content dark">
     	<div class="info <?php echo !empty($featured_video) ? 'column' :''; ?>">
 	       	<h1><?php the_title(); ?></h1>
            	<?php $excerpt = get_the_excerpt(); if (!empty($excerpt)): ?>
@@ -50,10 +50,26 @@ if ($thumb) :
     </div>	
 	<?php endif; ?>
     
+    <?php if ( is_active_sidebar( 'default_mobile_top' ) ) : ?>
+    <div class="sidebar mobile top">
+    	<div class="content" >
+			<?php dynamic_sidebar( 'default_mobile_top' ); ?>
+		</div>
+    </div>	
+	<?php endif; ?>
+    
 	<div class="content left" >       		
 		<?php the_post(); ?>
 		<?php the_content(); ?>
 	</div>
+    
+    <?php if ( is_active_sidebar( 'default_mobile_bottom' ) ) : ?>
+    <div class="sidebar mobile bottom">
+    	<div class="content" >
+			<?php dynamic_sidebar( 'default_mobile_bottom' ); ?>
+		</div>
+    </div>	
+	<?php endif; ?>
 			
 </section>
 <?php endwhile; ?>
