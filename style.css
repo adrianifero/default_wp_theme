@@ -4,7 +4,7 @@
  Description:    Default wordpress theme
  Author:         Adrian Toro
  Author URI:     http://platanocafe.ca
- Version:        0.2.4
+ Version:        0.2.5
 */
 
 /* HEADER */
@@ -286,17 +286,12 @@ section#top h1 { text-shadow: 1px 1px rgba(26, 26, 26, 1); }
 section#top.dark h1, section#top.dark h2 { color: #F9f9f9; }
 section#top.light h1, section#top.light h2 { color: black; }
 section#top > div.content { padding: 16px; opacity: 0.8; background-image: -webkit-gradient( linear, left top, right bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(255, 255, 255, 0)), color-stop(.7,rgba(146, 146, 146, 0.08)) ); opacity: 0.9; }
-section#top > div.content.dark { background-image: -webkit-gradient( linear, left top, right bottom, from(rgba(0, 0, 0, 0.48)), to(rgba(44, 44, 44, 0.71)), color-stop(.7,rgba(18, 18, 18, 0.71)) ); }
-section#top.left > div.content { text-align:left; }
-section#top.right > div.content { background-image: -webkit-gradient( linear, right top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(255, 255, 255, 0)), color-stop(.4,rgba(146, 146, 146, 0.08)) ); text-align:center;  }
-	
-section#top.center > div.content { text-align:center; }
 section#top > div.content h1 { font-size:32px; }
 
 /* Two columns */
 section#top div.content div.column {
 	text-align:left;
-	width: 40%;
+	width: 47%;
 	margin:1%;
 	display: inline-block;
 	vertical-align: middle;
@@ -307,13 +302,13 @@ section#top div.content div.info.column p { font-size:12px; }
 section#top div.content div.video.column { max-width:500px; }
 
 /* When just title and excerpt: */
-section#top div.content { text-align:left; }
+section#top div.content { }
 section#top div.content div.info,
 section#top div.content > p,
 section#top div.content > h1,
 section#top div.content > h2,
 section#top div.content > h3,
-section#top div.content > span { max-width:1600px; margin:0 auto; }
+section#top div.content > span { max-width:1600px; margin:0 auto; text-align:left; }
 
 @media (max-width:759px) {
 	section#top { height:auto !important; }
@@ -321,6 +316,15 @@ section#top div.content > span { max-width:1600px; margin:0 auto; }
 		width:98%;
 	}
 }
+
+/* Additions to Top Content */
+section#top > div.content.dark { background-image: -webkit-gradient( linear, left top, right bottom, from(rgba(0, 0, 0, 0.48)), to(rgba(44, 44, 44, 0.71)), color-stop(.7,rgba(18, 18, 18, 0.71)) ); }
+section#top.left > div.content { text-align:left; }
+section#top.right > div.content { background-image: -webkit-gradient( linear, right top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(255, 255, 255, 0)), color-stop(.4,rgba(146, 146, 146, 0.08)) ); text-align:center;  }
+	
+section#top.center > div.content { text-align:center; }
+
+
 
 /* Homepage image */
 section#top.homepage.image {
