@@ -409,6 +409,8 @@ section#archive > div.content > div.box a div.content p { font-size: 11px; font-
 @media (max-width:500px) {
 	section#top { }
 	section#top > div.content h1 { font-size:22px; }
+	
+	section#archive > div.content > div.box a div.content { border-bottom: 1px solid #ddd; }
 }
 
 
