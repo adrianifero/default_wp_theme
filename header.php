@@ -15,7 +15,7 @@
 	
 </head>
 
-<body style="margin: 0;font-family: 'Open Sans', sans-serif;color: #EEE;">
+<body <?php body_class(); ?> >
 	<header id="header" class="fixed">
     	<div class="container">
 			<div class="logo">

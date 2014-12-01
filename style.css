@@ -4,7 +4,7 @@
  Description:    Default wordpress theme
  Author:         Adrian Toro
  Author URI:     http://platanocafe.ca
- Version:        0.2.3
+ Version:        0.2.4
 */
 
 /* HEADER */
@@ -269,7 +269,7 @@ section > .content > h4,
 section > .content > h5,
 section > .content > h6 { margin:12px 0; } 
 section > .content img { max-width:100%; height:auto; }
-section > .content .box { width:100%; max-width:400px; display:inline-block; vertical-align:top; /*padding: 6px;*/ /* TODO: This padding is affecting mobile */ text-align:left; } 
+section > .content .box { width:100%; max-width:400px; display:inline-block; vertical-align:top; padding: 6px; text-align:left; } 
 section > .content .box .background { max-height: 300px; overflow: hidden; height: 300px; background: #111; position: relative; }
 section > .content .box .background img { position: absolute; top: 0; bottom: 0; margin: auto; }
 section > .content .box .content p { font-size: 14px; font-weight: 100; }
@@ -281,7 +281,7 @@ section > .content h1 { margin:0px; }
 
 
 /* Section Top */
-section#top { max-height:800px; text-align:left; margin-top:49px; }
+section#top { max-height:800px; text-align:left; margin-top:49px; color:#F9f9f9;  }
 section#top h1 { text-shadow: 1px 1px rgba(26, 26, 26, 1); }
 section#top.dark h1, section#top.dark h2 { color: #F9f9f9; }
 section#top.light h1, section#top.light h2 { color: black; }
@@ -296,7 +296,7 @@ section#top > div.content h1 { font-size:32px; }
 /* Two columns */
 section#top div.content div.column {
 	text-align:left;
-	width: 47%;
+	width: 40%;
 	margin:1%;
 	display: inline-block;
 	vertical-align: middle;
@@ -408,13 +408,25 @@ section#single > .sidebar.mobile .content {
 
 section#single > .sidebar.right > .content > div { width:300px; margin:0 auto; }
 section#single > .sidebar.right > .content > div h2 { font-size:20px; font-weight:100; }
+section#single > .sidebar.right > .content > div img { height:auto; }
 
-
+/* Section Archive */
+section#archive {}
+section#archive > div.content {}
+section#archive > div.content > div.box { max-width: 280px; }
+section#archive > div.content > div.box a {}
+section#archive > div.content > div.box a div.background { height: 160px; max-height:160px; }
+section#archive > div.content > div.box a div.background img {}
+section#archive > div.content > div.box a h3 {}
+section#archive > div.content > div.box a div.content {}
+section#archive > div.content > div.box a div.content p { font-size: 11px; font-weight: 100; }
 
 /* Responsive Sections */
 @media (max-width:500px) {
 	section#top { }
 	section#top > div.content h1 { font-size:20px; }
+	
+	section#archive > div.content > div.box a div.content { border-bottom: 1px solid #ddd; }
 }
 
 
@@ -523,3 +535,5 @@ iframe#twitter-widget-0 { width:100%; max-width:500px; height:auto; min-height:3
 @media (min-width:600px) {
 	iframe[id^="twitter-widget"] { width: 100%; height:auto; min-height:600px; }
 }
+
+form#loginform label { display:block; }
