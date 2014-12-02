@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<section id="top" class="green" >
+<section id="top" class="center green" >
 	<div class="content">
        <h1 style="font-size: 48px;margin: 0px;">Not Found</h1>
        <h2 style="font-size: 14px;">404 error</h2>
