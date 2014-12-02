@@ -233,14 +233,11 @@ class galerie_photos_widget extends WP_Widget {
 		if ( $the_query->have_posts() ) {
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
-				
-				if ( has_post_thumbnail() ) :
-					echo '<li><a href="';
-					the_permalink();
-					echo '">';
-					the_post_thumbnail( array(320,320) );
-					echo '</a></li>';
-				endif;
+				echo '<li><a href="';
+				the_permalink();
+				echo '">';
+				the_post_thumbnail( array(320,320) );
+				echo '</a></li>';
 			}
 		} else {
 			// no posts found
