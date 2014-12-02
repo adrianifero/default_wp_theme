@@ -98,29 +98,15 @@ add_action('get_header', 'default_theme_remove_header');
 endif; // default_theme_remove_header
 
 
-
 /* -------------------------------------------------- */
-/* ADD SHORTCODES
+/* RChange Custom Excerpt More Code
 /* -------------------------------------------------- */
-function default_theme_login_form_shortcode( $atts, $content = null ) {
- 
-	extract( shortcode_atts( array(
-      'redirect' => ''
-      ), $atts ) );
- 
-	if (!is_user_logged_in()) {
-		if($redirect) {
-			$redirect_url = $redirect;
-		} else {
-			$redirect_url = get_permalink();
-		}
-		$form = wp_login_form(array('echo' => false, 'redirect' => $redirect_url ));
+if ( ! function_exists( 'default_theme_custom_excerpt_more' ) ) :
+	function default_theme_custom_excerpt_more($more) {
+		return '…';
 	}
-	return $form;
-}
-add_shortcode('DT_login', 'default_theme_login_form_shortcode');
-
-
+add_filter('excerpt_more', 'default_theme_custom_excerpt_more');
+endif; // default_theme_custom_excerpt_more
 
 /* -------------------------------------------------- */
 /* SHOW FEATURED IMAGE ON POST AND PAGES COLUMN 
@@ -194,6 +180,22 @@ if ( ! function_exists( 'default_custom_theme_sidebars' ) ) :
 		'before_title' => '<h2 class="rounded">',
 		'after_title' => '</h2>',
 	) );
+	register_sidebar( array(
+		'name' => 'Mobile Top sidebar',
+		'id' => 'default_mobile_top',
+		'before_widget' => '<div class="thiswidget">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="rounded">',
+		'after_title' => '</h2>',
+	) );
+	register_sidebar( array(
+		'name' => 'Mobile Bottom sidebar',
+		'id' => 'default_mobile_bottom',
+		'before_widget' => '<div class="thiswidget">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="rounded">',
+		'after_title' => '</h2>',
+	) );
 }
 add_action( 'widgets_init', 'default_custom_theme_sidebars' );
 endif; // default_custom_theme_setup
@@ -233,11 +235,14 @@ class galerie_photos_widget extends WP_Widget {
 		if ( $the_query->have_posts() ) {
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
-				echo '<li><a href="';
-				the_permalink();
-				echo '">';
-				the_post_thumbnail( array(320,320) );
-				echo '</a></li>';
+				
+				if ( has_post_thumbnail() ) :
+					echo '<li><a href="';
+					the_permalink();
+					echo '">';
+					the_post_thumbnail( array(320,320) );
+					echo '</a></li>';
+				endif;
 			}
 		} else {
 			// no posts found
