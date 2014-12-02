@@ -99,7 +99,7 @@ endif; // default_theme_remove_header
 
 
 /* -------------------------------------------------- */
-/* RChange Custom Excerpt More Code
+/* Change Excerpt 
 /* -------------------------------------------------- */
 if ( ! function_exists( 'default_theme_custom_excerpt_more' ) ) :
 	function default_theme_custom_excerpt_more($more) {
@@ -107,6 +107,13 @@ if ( ! function_exists( 'default_theme_custom_excerpt_more' ) ) :
 	}
 add_filter('excerpt_more', 'default_theme_custom_excerpt_more');
 endif; // default_theme_custom_excerpt_more
+
+if ( ! function_exists( 'default_theme_custom_excerpt_length' ) ) :
+	function default_theme_custom_excerpt_length($length) {
+	    return 25;
+	}
+add_filter('excerpt_length', 'default_theme_custom_excerpt_length');
+endif;
 
 /* -------------------------------------------------- */
 /* SHOW FEATURED IMAGE ON POST AND PAGES COLUMN 

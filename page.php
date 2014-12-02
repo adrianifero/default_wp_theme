@@ -3,22 +3,6 @@
 <?php if(have_posts()): ?>
 <?php while(have_posts()): ?>
 
-<?php 
-$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail_size' );
-if ($thumb) : 
-	$url = $thumb['0']; 
-	$width = $thumb['1']; 
-	$height = $thumb['2']; 
-	
-?>
-	<style>
-    section#top {
-    	background-image: url('<?php echo $url; ?>');
-		height: <?php echo $height; ?>
-    }
-    </style>
-<?php endif; ?>
-
 <section id="top" class="green page" >
 	<div class="content">
        <h1><?php the_title(); ?></h1>
@@ -35,7 +19,8 @@ if ($thumb) :
 <?php endif; ?>
 
 <section id="page" class="white" >
-	<div class="content" >       		
+	<div class="content" >       	
+    	<?php the_post_thumbnail('photo_large_crop')	; ?>
 		<?php the_post(); ?>
 		<?php the_content(); ?>
 	</div>				

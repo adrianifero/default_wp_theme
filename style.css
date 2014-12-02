@@ -4,11 +4,12 @@
  Description:    Default wordpress theme
  Author:         Adrian Toro
  Author URI:     http://platanocafe.ca
- Version:        0.2.9
+ Version:        0.3.0
 */
 
 /* HEADER */
-body, html, h1, h2, h3, h4, h5, h6, span, p, a, td, li { font-family: 'Open Sans', sans-serif; !important; font-style: normal; font-size: 14px; }
+body, html, h1, h2, h3, h4, h5, h6, span, p, a, td, li { font-family: 'Open Sans', sans-serif; !important; font-style: normal; font-size: 14px; font-weight:400; }
+h1, h2, h3, h4, h5, h6, li { margin: 7px 0; }
 body { margin:0px; }
 a { text-decoration:none; color: black; font-weight:bold;  }
 li a { text-decoration:none; color: black; font-weight:normal;  }
@@ -163,8 +164,8 @@ header div.container div.logo { position:absolute; top:10px; left:20px; margin:0
 header div.container div.logo h1 { padding:0; margin:0; font-size: 20px; }
 header div.container div.logo h1, header div.container div.logo h1 a { color: #5F5F5F; font-size: 22px; font-weight: 200; }
 header div.container nav { position:absolute; top: 0px; right: 60px; }
-header div.container nav ul { margin: 0; padding: 0; }
-header div.container nav ul li { position:relative; display: inline-block; vertical-align:top; min-width: 110px; padding: 17px 8px; list-style: none; text-align:center; }
+header div.container nav ul { margin: 0; padding: 0; max-height: 50px; overflow: hidden; max-width: 900px; }
+header div.container nav ul li { position:relative; display: inline-block; vertical-align:top; min-width: 110px; padding: 17px 8px; margin:0; list-style: none; text-align:center; }
 header div.container nav ul li a {
 	color: #717171;
 	text-decoration: none;
@@ -278,7 +279,7 @@ section > .content .box .content a { text-decoration:none; transition:all 0.4s; 
 section > .content .box .content a:hover * { opacity:0.8; transition:all 0.4s; -webkit-transition:all 0.4s; transition: all 0.3s; -webkit-transition: all 0.3s; }
 section > .content h1 { margin:0px; }
 
-
+section > .content > div { text-align:left; }
 
 /* Section Top */
 section#top { max-height:800px; text-align:left; margin-top:49px; color:#F9f9f9;  }
@@ -395,12 +396,10 @@ section#single > .sidebar.mobile .content {
 
 @media (max-width:1279px) {
 	section#single { margin: 30px auto; width:960px; } 
-	section#single > .content { width:620px; } 
 	section#single > .sidebar.right { margin: 0 8px; }
 }
 @media (max-width:959px) {
 	section#single { margin: 10px auto; width:759px; } 
-	section#single > .content { width:420px; } 
 	section#single > .sidebar.right { margin: 0 8px; }
 }
 @media (max-width:779px) {

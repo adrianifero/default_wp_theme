@@ -3,25 +3,6 @@
 <?php if(have_posts()): ?>
 <?php while(have_posts()): ?>
 
-<?php 
-$featured_video = get_post_meta( $post->ID, '_featured_video', true );
-$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail_size' );
-
-if ($thumb) : 
-	$url = $thumb['0']; 
-	$width = $thumb['1']; 
-	$height = $thumb['2'];
-	
-?>
-	<style>
-    section#top {
-    	background-image: url('<?php echo $url; ?>');
-		/* height: <?php if ( empty($featured_video)) { echo $height; } ?>px; */
-    }
-    </style>
-<?php endif; ?>
-
-
 <section id="top" class="green" >
 	<div class="content dark">
     	<div class="info <?php echo !empty($featured_video) ? 'column' :''; ?>">
@@ -58,7 +39,8 @@ if ($thumb) :
     </div>	
 	<?php endif; ?>
     
-	<div class="content left" >       		
+	<div class="content left" >  
+    	<?php the_post_thumbnail('photo_large_crop')	; ?>     		
 		<?php the_post(); ?>
 		<?php the_content(); ?>
 	</div>
