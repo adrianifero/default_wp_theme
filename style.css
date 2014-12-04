@@ -4,7 +4,7 @@
  Description:    Default wordpress theme
  Author:         Adrian Toro
  Author URI:     http://platanocafe.ca
- Version:        0.3.0
+ Version:        0.3.1
 */
 
 /* HEADER */
@@ -147,6 +147,35 @@ ol.circle li:before {
 	border-radius: 17px;
 }
 
+/* Content messages*/
+.information, .success, .warning, .error, .validation {
+/* border: 1px solid; */
+margin: 10px 0px;
+padding:15px 10px 15px 50px;
+background-repeat: no-repeat;
+background-position: 10px center;
+background-size: 30px;
+}
+.information {
+color: #00529B;
+background-color: #BDE5F8;
+background-image: url('img/message-info.png');
+}
+.success {
+color: #4F8A10;
+background-color: #DFF2BF;
+background-image:url('img/message-success.png');
+}
+.warning {
+color: #9F6000;
+background-color: #FEEFB3;
+background-image: url('img/message-warning.png');
+}
+.error {
+color: #D8000C;
+background-color: #FFBABA;
+background-image: url('img/message-error.png');
+}
 
 div.gallery figure.gallery-item {
 	display: inline-block;
@@ -271,6 +300,8 @@ section > .content > h5,
 section > .content > h6 { margin:12px 0; } 
 section > .content img { max-width:100%; height:auto; }
 section > .content .box { width:100%; max-width:400px; display:inline-block; vertical-align:top; padding: 6px; text-align:left; } 
+section > .content .box.full { max-width:100%; padding:0px; }
+section > .content .box.full > * { padding:8px; }
 section > .content .box .background { max-height: 300px; overflow: hidden; height: 300px; background: #111; position: relative; }
 section > .content .box .background img { position: absolute; top: 0; bottom: 0; margin: auto; }
 section > .content .box .content p { font-size: 14px; font-weight: 100; }
