@@ -12,13 +12,15 @@
 			var newparameters = 'autohide=1&modestbranding=1&rel=0&showinfo=0&border=0&fs=1&iv_load_policy=1&theme=light&controls=0';
 		}
 			
-		if ( $(this).attr("src").indexOf('videoseries') === -1 ) {
+		if ( url.length > 0 && paramteres.lenght > 0 ) {
+			if ( $(this).attr("src").indexOf('videoseries') === -1 ) {
 				newsrc = url.substring(0,url.indexOf('?')) + '?' + newparameters;
-		}else {
+				$(this).attr("src",newsrc);
+			}else {
 				newsrc = url.substring(0,url.indexOf('?')) + parameters + '&' + newparameters;		
-		}	
-			
-		$(this).attr("src",newsrc);
+				$(this).attr("src",newsrc);
+			}	
+		}
 	});
 	
 	// Fit videos:
