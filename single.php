@@ -40,7 +40,7 @@
 	<?php endif; ?>
     
 	<div class="content left" >  
-    	<?php the_post_thumbnail('photo_large_crop')	; ?>     		
+    	<?php the_post_thumbnail('photo_large_crop', array( 'class' => 'aligncenter' ) )	; ?>     		
 		<?php the_post(); ?>
 		<?php the_content(); ?>
 	</div>
