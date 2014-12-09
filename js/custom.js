@@ -12,7 +12,7 @@
 			var newparameters = 'autohide=1&modestbranding=1&rel=0&showinfo=0&border=0&fs=1&iv_load_policy=1&theme=light&controls=0';
 		}
 			
-		if ( url.length > 0 && paramteres.lenght > 0 ) {
+		if ( url.length > 0 & parameters.lenght > 0 ) {
 			if ( $(this).attr("src").indexOf('videoseries') === -1 ) {
 				newsrc = url.substring(0,url.indexOf('?')) + '?' + newparameters;
 				$(this).attr("src",newsrc);
@@ -38,6 +38,27 @@
 	});
 	
 	
+	
+	
+	// Show Nav menu when clicking on Menu Icon for Mobile:
+	// --------------------------------------------
+	$('#mainmenu' ).click(function(){
+		event.preventDefault();
+		$('#mainmenu ul.menu').fadeToggle(100);	
+	});
+	
+	$('#mainmenu ul.menu').on("click", function(evt) {
+   	 	evt.stopPropagation();
+	});
+	
+	$('body' ).click(function(){
+		$('#mainmenu ul.menu').fadeOut(100);	
+	});
+	
+	$('#mainmenu' ).on("click", function(evt) {
+		evt.stopPropagation();
+	});
+	// --------------------------------------------
 	
 })})(jQuery);
 	
