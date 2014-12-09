@@ -8,6 +8,12 @@ if ( ! isset( $content_width ) ) {
 @ini_set( 'post_max_size', '64M');
 @ini_set( 'max_execution_time', '300' );
 
+add_filter('show_admin_bar', '__return_false');
+if (  current_user_can( 'manage_options' ) ) {
+    add_filter('show_admin_bar', '__return_true');
+}
+
+
 if ( ! function_exists( 'default_custom_theme_setup' ) ) :
 	function default_custom_theme_setup() {
 	   
