@@ -4,7 +4,7 @@
  Description:    Default wordpress theme
  Author:         Adrian Toro
  Author URI:     http://platanocafe.ca
- Version:        0.3.7
+ Version:        0.3.8
 */
 
 /* HEADER */
@@ -280,6 +280,8 @@ header div.container nav ul li ul.sub-menu li:hover a, header nav ul li ul.sub-m
 		box-shadow: 0 1px 4px rgba(0,0,0,0.25);
 		background-clip: padding-box;
 	}
+	
+	header div.container nav ul.menu.show { display:block; }
 	
 	header div.container nav ul li { 
 		display:block;  

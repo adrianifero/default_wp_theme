@@ -44,7 +44,7 @@
 	// --------------------------------------------
 	$('#mainmenu' ).click(function(){
 		event.preventDefault();
-		$('#mainmenu ul.menu').fadeToggle(100);	
+		$('#mainmenu ul.menu').toggleClass('show');	
 	});
 	
 	$('#mainmenu ul.menu').on("click", function(evt) {
@@ -52,7 +52,7 @@
 	});
 	
 	$('body' ).click(function(){
-		$('#mainmenu ul.menu').fadeOut(100);	
+		$('#mainmenu ul.menu').removeClass('show');	
 	});
 	
 	$('#mainmenu' ).on("click", function(evt) {
