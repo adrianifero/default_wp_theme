@@ -93,6 +93,97 @@ add_action( 'admin_print_styles', 'default_theme_admin_name_scripts'  );
 
 
 /* -------------------------------------------------- */
+/* THEME SETTINGS ADMIN PAGE
+/* -------------------------------------------------- */
+function default_theme_settings_page() {
+    add_submenu_page('themes.php', 
+        'Default Theme Settings', 'Theme Settings', 'manage_options', 
+        'default-theme-settings', 'default_theme_front_page_settings');
+}
+add_action("admin_menu", "default_theme_settings_page");
+
+function default_theme_front_page_settings() {
+	$facebook_url = get_option("default_theme_facebook_url");
+	$twitter_url = get_option("default_theme_twitter_url");
+	$instagram_url = get_option("default_theme_instagram_url");
+	$pinterest_url = get_option("default_theme_pinterest_url");
+	
+	
+    ?>
+    <div class="wrap">
+        <?php screen_icon('themes'); ?> <h2>Default Theme Settings</h2>
+ 
+ 		<h3>Social Media Settings</h3>
+        <form method="POST" action="">
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="facebook_url">
+                            Facebook URL:
+                        </label> 
+                    </th>
+                    <td>
+                        <input type="text" name="facebook_url" size="25" value="<?php echo $facebook_url;?>" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="twitter_url">
+                            Twitter URL:
+                        </label> 
+                    </th>
+                    <td>
+                        <input type="text" name="twitter_url" size="25" value="<?php echo $twitter_url;?>" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="instagram_url">
+                            Instagram URL:
+                        </label> 
+                    </th>
+                    <td>
+                        <input type="text" name="instagram_url" size="25" value="<?php echo $instagram_url;?>" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="pinterest_url">
+                            Pinterest URL:
+                        </label> 
+                    </th>
+                    <td>
+                        <input type="text" name="pinterest_url" size="25" value="<?php echo $pinterest_url;?>" />
+                    </td>
+                </tr>
+            </table>
+            <button type='submit'>Save</button>
+            <input type="hidden" name="update_settings" value="Y" />
+        </form>
+    </div>
+    <?php
+}
+
+if (isset($_POST["update_settings"])) {
+	$facebook_url = esc_attr($_POST["facebook_url"]);   
+	update_option("default_theme_facebook_url", $facebook_url);
+	
+	$twitter_url = esc_attr($_POST["twitter_url"]);   
+	update_option("default_theme_twitter_url", $twitter_url);
+	
+	$instagram_url = esc_attr($_POST["instagram_url"]);   
+	update_option("default_theme_instagram_url", $instagram_url);
+	
+	$pinterest_url = esc_attr($_POST["pinterest_url"]);   
+	update_option("default_theme_pinterest_url", $pinterest_url);
+	
+	?>
+	<div id="message" class="updated">Settings saved</div>
+	<?php
+}
+
+
+/* -------------------------------------------------- */
 /* Remove Header Spacing
 /* -------------------------------------------------- */
 if ( ! function_exists( 'default_theme_remove_header' ) ) :
