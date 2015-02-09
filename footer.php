@@ -13,8 +13,8 @@
 		<a href="<?php echo $instagram_url; ?>" target="_BLANK"><img src="<?php echo get_template_directory_uri(); ?>/img/instagram-xl.png"></a>
         <?php endif;?>
         
-    	<?php $acebook_url = get_option("default_theme_facebook_url"); ?>
-        <?php if (!empty($acebook_url)): ?>
+    	<?php $facebook_url = get_option("default_theme_facebook_url"); ?>
+        <?php if (!empty($facebook_url)): ?>
 		<a href="<?php echo get_option("default_theme_facebook_url"); ?>" target="_BLANK"><img src="<?php echo get_template_directory_uri(); ?>/img/facebook-xl.png"></a>
         <?php endif;?>
         
