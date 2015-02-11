@@ -8,13 +8,19 @@ if ( ! isset( $content_width ) ) {
 @ini_set( 'post_max_size', '64M');
 @ini_set( 'max_execution_time', '300' );
 
+add_filter('show_admin_bar', '__return_false');
+if (  current_user_can( 'manage_options' ) ) {
+    add_filter('show_admin_bar', '__return_true');
+}
+
+
 if ( ! function_exists( 'default_custom_theme_setup' ) ) :
 	function default_custom_theme_setup() {
 	   
 		add_image_size( 'photo_large_crop', 960, 450, true ); //(cropped)
 		add_image_size( 'photo_small_thumbnail', 100, 58, true ); //(cropped)		
 		add_theme_support( 'post-thumbnails' );
-		load_theme_textdomain( 'translate', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'default', get_template_directory() . '/languages' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
@@ -84,6 +90,97 @@ function default_theme_admin_name_scripts() {
 	$wp_styles->add_data( 'face3_theme_options', 'rtl', true );
 }
 add_action( 'admin_print_styles', 'default_theme_admin_name_scripts'  );
+
+
+/* -------------------------------------------------- */
+/* THEME SETTINGS ADMIN PAGE
+/* -------------------------------------------------- */
+function default_theme_settings_page() {
+    add_submenu_page('themes.php', 
+        'Default Theme Settings', __('Theme Settings','default'), 'manage_options', 
+        'default-theme-settings', 'default_theme_front_page_settings');
+}
+add_action("admin_menu", "default_theme_settings_page");
+
+function default_theme_front_page_settings() {
+	$facebook_url = get_option("default_theme_facebook_url");
+	$twitter_url = get_option("default_theme_twitter_url");
+	$instagram_url = get_option("default_theme_instagram_url");
+	$pinterest_url = get_option("default_theme_pinterest_url");
+	
+	
+    ?>
+    <div class="wrap">
+        <?php screen_icon('themes'); ?> <h2><?php _e('Default Theme Settings','default');?></h2>
+ 
+ 		<h3><?php _e('Social Media Settings','default');?></h3>
+        <form method="POST" action="">
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="facebook_url">
+                           	<?php _e('Facebook URL','default');?>:
+                        </label> 
+                    </th>
+                    <td>
+                        <input type="text" name="facebook_url" size="25" value="<?php echo $facebook_url;?>" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="twitter_url">
+                            <?php _e('Twitter URL','default');?>:
+                        </label> 
+                    </th>
+                    <td>
+                        <input type="text" name="twitter_url" size="25" value="<?php echo $twitter_url;?>" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="instagram_url">
+                            <?php _e('Instagram URL','default');?>:
+                        </label> 
+                    </th>
+                    <td>
+                        <input type="text" name="instagram_url" size="25" value="<?php echo $instagram_url;?>" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="pinterest_url">
+                            <?php _e('Pinterest URL','default');?>:
+                        </label> 
+                    </th>
+                    <td>
+                        <input type="text" name="pinterest_url" size="25" value="<?php echo $pinterest_url;?>" />
+                    </td>
+                </tr>
+            </table>
+            <button type='submit'><?php _e('Save','default');?></button>
+            <input type="hidden" name="update_settings" value="Y" />
+        </form>
+    </div>
+    <?php
+}
+
+if (isset($_POST["update_settings"])) {
+	$facebook_url = esc_attr($_POST["facebook_url"]);   
+	update_option("default_theme_facebook_url", $facebook_url);
+	
+	$twitter_url = esc_attr($_POST["twitter_url"]);   
+	update_option("default_theme_twitter_url", $twitter_url);
+	
+	$instagram_url = esc_attr($_POST["instagram_url"]);   
+	update_option("default_theme_instagram_url", $instagram_url);
+	
+	$pinterest_url = esc_attr($_POST["pinterest_url"]);   
+	update_option("default_theme_pinterest_url", $pinterest_url);
+	
+	?>
+	<div id="message" class="updated"><?php _e('Settings saved','default');?></div>
+	<?php
+}
 
 
 /* -------------------------------------------------- */
@@ -223,8 +320,8 @@ class galerie_photos_widget extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'photos_widgets', // Base ID
-			__('Photos Widget', 'text_domain'), // Name
-			array( 'description' => __( 'Displays thumbanils of related posts in a fancy way', 'text_domain' ), ) // Args
+			__('Photos Widget', 'default'), // Name
+			array( 'description' => __( 'Displays thumbnails of related posts in a fancy way', 'default' ), ) // Args
 		);
 	}
 	public function widget( $args, $instance ) {
@@ -278,12 +375,12 @@ class galerie_photos_widget extends WP_Widget {
 			$post_type = $instance[ 'post_type' ];
 		}
 		else {
-			$title = __( 'Photos', 'text_domain' );
+			$title = __( 'Photos', 'default' );
 			$post_type = 'post';
 		}
 		?>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:','default' ); ?></label> 
 		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 		<p>
@@ -307,20 +404,20 @@ class galerie_photos_widget extends WP_Widget {
 /* Register places post type */
 function register_place_post_type() {
 	$labels = array(
-		'name'               => _x( 'Places', 'post type general name', 'galerie' ),
-		'singular_name'      => _x( 'Place', 'post type singular name', 'galerie' ),
-		'menu_name'          => _x( 'Places', 'admin menu', 'galerie' ),
-		'name_admin_bar'     => _x( 'Place', 'add new on admin bar', 'galerie' ),
-		'add_new'            => _x( 'Add New', 'place', 'galerie' ),
-		'add_new_item'       => __( 'Add New Place', 'galerie' ),
-		'new_item'           => __( 'New Place', 'galerie' ),
-		'edit_item'          => __( 'Edit Place', 'galerie' ),
-		'view_item'          => __( 'View Place', 'galerie' ),
-		'all_items'          => __( 'All Places', 'galerie' ),
-		'search_items'       => __( 'Search Places', 'galerie' ),
-		'parent_item_colon'  => __( 'Parent Places:', 'galerie' ),
-		'not_found'          => __( 'No places found.', 'galerie' ),
-		'not_found_in_trash' => __( 'No places found in Trash.', 'galerie' )
+		'name'               => _x( 'Places', 'post type general name', 'default' ),
+		'singular_name'      => _x( 'Place', 'post type singular name', 'default' ),
+		'menu_name'          => _x( 'Places', 'admin menu', 'default' ),
+		'name_admin_bar'     => _x( 'Place', 'add new on admin bar', 'default' ),
+		'add_new'            => _x( 'Add New', 'place', 'default' ),
+		'add_new_item'       => __( 'Add New Place', 'default' ),
+		'new_item'           => __( 'New Place', 'default' ),
+		'edit_item'          => __( 'Edit Place', 'default' ),
+		'view_item'          => __( 'View Place', 'default' ),
+		'all_items'          => __( 'All Places', 'default' ),
+		'search_items'       => __( 'Search Places', 'default' ),
+		'parent_item_colon'  => __( 'Parent Places:', 'default' ),
+		'not_found'          => __( 'No places found.', 'default' ),
+		'not_found_in_trash' => __( 'No places found in Trash.', 'default' )
 	);
 
 	$args = array(

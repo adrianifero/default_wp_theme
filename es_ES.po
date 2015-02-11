@@ -1,0 +1,150 @@
+# Copyright (C) 2015 WordPress
+# This file is distributed under the same license as the WordPress package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress 4.2-alpha-31381\n"
+"Report-Msgid-Bugs-To: http://make.wordpress.org/polyglots\n"
+"POT-Creation-Date: 2015-02-09 14:57-0500\n"
+"PO-Revision-Date: 2015-02-09 14:58-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-KeywordsList: _e;__;_x\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: 404.php:13
+msgid "We couldn't find the page you're looking for"
+msgstr "No podemos encontrar la página que buscas"
+
+#: 404.php:15
+msgid "Did you input the correct URL?"
+msgstr "¿Colocaste el URL correcto?"
+
+#: 404.php:16
+msgid ""
+"We couldn't find the page you're looking for.  It is may be because the URL "
+"is incorrect or because this page doesn't exist anymore."
+msgstr ""
+"No podemos encontrar la página que buscas.  Puede que la página no exista "
+"más o que el URL que introdujiste sea incorrecto."
+
+#: functions.php:100
+msgid "Theme Settings"
+msgstr "Ajustes del Tema"
+
+#: functions.php:114
+msgid "Default Theme Settings"
+msgstr "Ajustes de tema"
+
+#: functions.php:116
+msgid "Social Media Settings"
+msgstr "Redes sociales"
+
+#: functions.php:122
+msgid "Facebook URL"
+msgstr "Facebook URL"
+
+#: functions.php:132
+msgid "Twitter URL"
+msgstr "Twitter URL"
+
+#: functions.php:142
+msgid "Instagram URL"
+msgstr "Instagram URL"
+
+#: functions.php:152
+msgid "Pinterest URL"
+msgstr "Pinterest URL"
+
+#: functions.php:160
+msgid "Save"
+msgstr "Guardar"
+
+#: functions.php:181
+msgid "Settings saved"
+msgstr "Configuración Guardada\t"
+
+#: functions.php:323
+msgid "Photos Widget"
+msgstr "Widget de Fotos"
+
+#: functions.php:324
+msgid "Displays thumbnails of related posts in a fancy way"
+msgstr "Mostrar thumbnails de post relacionados de modo 'fancy'"
+
+#: functions.php:378
+msgid "Photos"
+msgstr "Fotos"
+
+#: functions.php:383
+msgid "Title:"
+msgstr "Título:"
+
+#: functions.php:387
+msgid "Post Type (default to post):"
+msgstr "Post Type:"
+
+#: functions.php:407 functions.php:409
+msgid "Places"
+msgstr "Lugares"
+
+#: functions.php:408 functions.php:410
+msgid "Place"
+msgstr "Lugar"
+
+#: functions.php:411
+msgid "Add New"
+msgstr "Agregar Nuevo"
+
+#: functions.php:412
+msgid "Add New Place"
+msgstr "Agregar Nuevo"
+
+#: functions.php:413
+msgid "New Place"
+msgstr "Nuevo Lugar"
+
+#: functions.php:414
+msgid "Edit Place"
+msgstr "Editar Lugar"
+
+#: functions.php:415
+msgid "View Place"
+msgstr "Ver Lugar"
+
+#: functions.php:416
+msgid "All Places"
+msgstr "Todos los lugares"
+
+#: functions.php:417
+msgid "Search Places"
+msgstr "Buscar lugares"
+
+#: functions.php:418
+msgid "Parent Places:"
+msgstr "Lugares"
+
+#: functions.php:419
+msgid "No places found."
+msgstr "No se encontró ningún lugar"
+
+#: functions.php:420
+msgid "No places found in Trash."
+msgstr "No hay lugares en la basura."
+
+#: functions.php:458
+msgid "Article Info"
+msgstr "Información"
+
+#: functions.php:485
+msgid "Insert a video link from Youtube"
+msgstr "Insertar un video de Youtube"
+
+#~ msgid "Displays thumbanils of related posts in a fancy way"
+#~ msgstr "Mostrar los thumbnails "
